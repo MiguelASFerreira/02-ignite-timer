@@ -20,12 +20,18 @@ const newCycleFormSchema = zod.object({
     .max(60, 'O intervalo precisa ser no máximo 60 minutos'),
 })
 
+type NewCycleFormData = zod.infer<typeof newCycleFormSchema>
+
 export function Home() {
-  const { register, handleSubmit, watch } = useForm({
+  const { register, handleSubmit, watch } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormSchema),
+    defaultValues: {
+      task: '',
+      minutesAmount: 0,
+    },
   })
 
-  function handleCreateNewCycle(data: any) {
+  function handleCreateNewCycle(data: NewCycleFormData) {
     console.log(data)
   }
 
