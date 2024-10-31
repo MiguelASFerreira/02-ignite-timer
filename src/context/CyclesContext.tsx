@@ -75,7 +75,7 @@ export function CyclesContextProvider({
     setCycles((state) =>
       state.map((cycle) => {
         if (cycle.id === activeCycleId) {
-          return { ...cycle, finishDate: new Date() }
+          return { ...cycle, interruptedDate: new Date() }
         } else {
           return cycle
         }
